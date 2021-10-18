@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  skip_before_action :authorized, only: [:create, :get_current_user]
+  skip_before_action :authorized, only: [:create, :index, :get_current_user]
   before_action :set_user, only: [:show] #:update, :destroy]
 
   # GET /users
@@ -20,7 +20,8 @@ class Api::V1::UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.valid?
       @token = encode_token(user_id: @user.id)
-      render json: {user: UserSerializer.new(@user), jwt: @token}, status: :created, location: @user
+      # binding.pry
+      render json: {user: UserSerializer.new(@user), jwt: @token}, status: :created
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -56,6 +57,6 @@ class Api::V1::UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :password, :email)
+      params.permit(:first_name, :last_name, :password, :password_confirmation, :email)
     end
 end
