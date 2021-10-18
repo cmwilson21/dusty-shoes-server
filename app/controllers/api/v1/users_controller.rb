@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApplicationController
+  skip_before_action :authorized, only: [:create, :get_current_user]
   before_action :set_user, only: [:show] #:update, :destroy]
-  skip_before_action :authorized, only: [:create]
 
   # GET /users
   # def index
@@ -23,6 +23,14 @@ class Api::V1::UsersController < ApplicationController
       render json: {user: UserSerializer.new(@user), jwt: @token}, status: :created, location: @user
     else
       render json: @user.errors, status: :unprocessable_entity
+    end
+  end
+
+  def get_current_user
+    if logged_in?
+      render json: {user: current_user}, status: :ok
+    else
+      render json: {errors: ["User not logged in."]}, status: :ok
     end
   end
 
