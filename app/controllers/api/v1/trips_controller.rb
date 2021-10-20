@@ -2,11 +2,20 @@ class Api::V1::TripsController < ApplicationController
   before_action :set_trip, only: [:show, :update, :destroy]
 
 
-  def index
-    @trips = Trip.all
-    render json: @trips
-  end
+  # def index
+  #   @trips = Trip.all
+  #   render json: @trips
+  # end
 
+  def index
+    if params[:user_id]
+      user = User.find(params[:user_id])
+      trips = user.trips
+    else
+      trips = Trip.all
+    end
+    render json: trips, include: :user
+  end
 
   def show
     render json: @trip
