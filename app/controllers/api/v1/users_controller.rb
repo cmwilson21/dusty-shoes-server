@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApplicationController
-  skip_before_action :authorized, only: [:create, :index, :get_current_user]
-  before_action :set_user, only: [:show] #:update, :destroy]
+  # skip_before_action :authorized, only: [:create, :get_current_user]
+  # before_action :set_user, only: [:show] #:update, :destroy]
 
   # GET /users
   # def index
@@ -11,6 +11,7 @@ class Api::V1::UsersController < ApplicationController
 
   # GET /users/1
   def show
+    set_user
     render json: @user
   end
 
