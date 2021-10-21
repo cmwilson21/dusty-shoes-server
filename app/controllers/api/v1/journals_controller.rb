@@ -2,10 +2,20 @@ class Api::V1::JournalsController < ApplicationController
   before_action :set_journal, only: [:show, :update, :destroy]
 
   # GET /journals
-  def index
-    @journals = Journal.all
+  # def index
+  #   @journals = Journal.all
 
-    render json: @journals
+  #   render json: @journals
+  # end
+
+  def index
+    if params[:trip_id]
+      @trip = Trip.find(params[:trip_id])
+      @journals = @trip.journals
+    else
+      @journals = Journal.all
+    end
+    render json: @journals, include: :trip
   end
 
   # GET /journals/1
@@ -18,7 +28,7 @@ class Api::V1::JournalsController < ApplicationController
     @journal = Journal.new(journal_params)
 
     if @journal.save
-      render json: @journal, status: :created, location: @journal
+      render json: @journal, status: :created
     else
       render json: @journal.errors, status: :unprocessable_entity
     end
@@ -46,6 +56,6 @@ class Api::V1::JournalsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def journal_params
-      params.require(:journal).permit(:trip_id, :content)
+      params.permit(:trip_id, :content)
     end
 end

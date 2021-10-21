@@ -2,10 +2,12 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do      
       resources :users do
-        resources :trips, only: [:index]
+        resources :trips, only: [:index, :destroy]
+      end
+      resources :trips do
+        resources :journals
       end
       resources :journals
-      resources :trips
       # resources :trips do
       #   resources :journals, only:[:index, :create]
       # end
