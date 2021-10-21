@@ -9,12 +9,12 @@ class Api::V1::TripsController < ApplicationController
 
   def index
     if params[:user_id]
-      user = User.find(params[:user_id])
-      trips = user.trips
+      @user = User.find(params[:user_id])
+      @trips = @user.trips
     else
-      trips = Trip.all
+      @trips = Trip.all
     end
-    render json: trips, include: :user
+    render json: @trips, include: :user
   end
 
   def show
@@ -24,7 +24,6 @@ class Api::V1::TripsController < ApplicationController
   
   def create
     @trip = Trip.new(trip_params)
-
     if @trip.save
       render json: @trip, status: :created
     else
