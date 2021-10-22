@@ -100,6 +100,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
+    pg (1.2.3)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -149,7 +150,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
     thor (1.1.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
@@ -168,12 +168,12 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   jwt (~> 2.3)
   listen (~> 3.3)
+  pg
   pry
   puma (~> 5.0)
   rack-cors
   rails (~> 6.1.4, >= 6.1.4.1)
   spring
-  sqlite3 (~> 1.4)
   tzinfo-data
 
 RUBY VERSION
