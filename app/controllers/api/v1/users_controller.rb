@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  # skip_before_action :authorized, only: [:create, :get_current_user]
+  skip_before_action :authorized, only: [:create, :get_current_user]
   # before_action :set_user, only: [:show] #:update, :destroy]
 
   # GET /users
