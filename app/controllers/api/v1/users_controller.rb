@@ -25,6 +25,7 @@ class Api::V1::UsersController < ApplicationController
       render json: {user: UserSerializer.new(@user), jwt: @token}, status: :created
     else
       render json: @user.errors, status: :unprocessable_entity
+      # render json: {errors: ["Please fill in each field."]}
     end
   end
 
