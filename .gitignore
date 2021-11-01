@@ -29,3 +29,14 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+
+#ignore method notes i've made
+# in user model
+  # def been_there
+  #   self.trips.where('been_there = ?', 'true')
+  # end
+
+  # def to_go
+  #   self.trips.where('been_there = ?', 'false')
+  # end
