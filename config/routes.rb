@@ -8,15 +8,11 @@ Rails.application.routes.draw do
         resources :journals
       end
       resources :journals
-      # resources :trips do
-      #   resources :journals, only:[:index, :create]
-      # end
 
 
       get '/get-current-user', to: 'users#get_current_user'
       post '/signup', to: 'users#create'
       post '/login', to: 'sessions#create'
-      # get 'users/:id/trips', to: 'trips#index'
  
     end
   end
