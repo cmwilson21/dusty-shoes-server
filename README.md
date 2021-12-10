@@ -6,3 +6,10 @@ Once everything is ready, run -
 rails db:create
 rails db:migrate
 rails s
+
+
+## Technologies Used
+  - Ruby on Rails
+  - JWT Auth
+  - Bcrypt
+  - RESTful principles
