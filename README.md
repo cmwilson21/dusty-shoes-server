@@ -18,7 +18,8 @@ rails s
 
 ## Code Preview
 Login Process
-```   def create
+```   
+def create
     @user = User.find_by_email(params[:email])
     if @user && @user.authenticate(params[:password])
       @token = encode_token(user_id: @user.id)
